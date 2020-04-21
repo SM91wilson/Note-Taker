@@ -28,21 +28,24 @@ app.get('/api/notes', function(req, res){
 // post new note to list
 app.post('/api/notes', function(req, res){
     var newNote = req.body;
-    console.log(newNote);
-    
+
 // read file, parse it, re write json file with all data from db.json and new data
 fs.readFile('./db/db.json', function(err, data){
     if(err) throw err;
-    
     var newJson = JSON.parse(data);
     newJson.push(newNote);
     console.log(newJson);
+    var newFile = JSON.stringify(newJson);
+    fs.writeFile('./db/db.json', newFile, function(err){
+        if(err) throw err;
+        console.log('saved')
+    })
 })
-})
+});
 
 app.delete('/api/notes/:id', function(req, res){
     var selected = req.id
-})
+});
 
 // starts the server listening
 app.listen(PORT, function() {

@@ -27,15 +27,18 @@ app.get('/api/notes', function(req, res){
 
 // post new note to list
 app.post('/api/notes', function(req, res){
+    // data of new task
     var newNote = req.body;
-
-// read file, parse it, re write json file with all data from db.json and new data
+// read the file containing the tasks
 fs.readFile('./db/db.json', function(err, data){
     if(err) throw err;
-    var newJson = JSON.parse(data);
-    newJson.push(newNote);
-    console.log(newJson);
-    var newFile = JSON.stringify(newJson);
+    // parse the data 
+    var newJsonArr = JSON.parse(data);
+    // push the latest note to the data parsed from the db.json
+    newJsonArr.push(newNote);
+    // stringify the new list of tasks
+    var newFile = JSON.stringify(newJsonArr);
+    // overwrite the db.json file with the new list
     fs.writeFile('./db/db.json', newFile, function(err){
         if(err) throw err;
         console.log('saved')
@@ -43,6 +46,7 @@ fs.readFile('./db/db.json', function(err, data){
 })
 });
 
+// delete task
 app.delete('/api/notes/:id', function(req, res){
     var selected = req.id
 });

@@ -29,11 +29,14 @@ app.get('/api/notes', function(req, res){
 app.post('/api/notes', function(req, res){
     // data of new task
     var newNote = req.body;
+    
 // read the file containing the tasks
 fs.readFile('./db/db.json', function(err, data){
     if(err) throw err;
     // parse the data 
     var newJsonArr = JSON.parse(data);
+    // using square brackets dynamically creates the new key
+    newNote['id'] = newJsonArr.length;
     // push the latest note to the data parsed from the db.json
     newJsonArr.push(newNote);
     // stringify the new list of tasks

@@ -49,6 +49,7 @@ app.post('/api/notes', function (req, res) {
         })
         res.json(notesStorage);
     })
+    // does add the note to the JSON file but isn't show on the localHost unless the server is restarted
 
 });
 
@@ -74,6 +75,7 @@ app.delete('/api/notes/:id', function (req, res) {
             console.log('deleted');
         })
     }
+    // sometimes delete needs to be pressed twice to work as intended
 });
 
 // starts the server listening

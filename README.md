@@ -1,4 +1,4 @@
-# Homework11 Note Taker
+# Note Taker
 
 ## Description
 The homework was to creat an application that allowed a user to write, save and delete notes.
